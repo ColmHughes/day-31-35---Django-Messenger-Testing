@@ -26,7 +26,7 @@ SECRET_KEY = 'k^^9n&kt#z_i+#gpqiq9^1sf)l90fc7k(=v8dcsk5g)csg4%+f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djangoauth-colmhughes.c9users.io']
+ALLOWED_HOSTS = ['djangoauth-colmhughes.c9users.io', 'django-messenger.herokuapp.com']
 
 
 # Application definition
