@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth, messages
 from .forms import UserLoginForm, UserRegistrationForm
 
@@ -8,6 +9,7 @@ def logout(request):
     return redirect('home')
     
 def login(request):
+    redirect_to = request.GET.get('next', 'home')
     if request.method=='POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
@@ -19,7 +21,7 @@ def login(request):
             if user is not None:
                 #Log them in
                 auth.login(request, user)
-                return redirect("home")
+                return redirect(redirect_to)
             else:
                 # say no
                 form.add_error(None, "Your username or password was not recognised")
@@ -29,7 +31,8 @@ def login(request):
     
     
     return render(request, 'accounts/login.html', { 'form': form })
-    
+
+@login_required()
 def profile(request):
     return render(request, 'accounts/profile.html')
     
@@ -54,3 +57,6 @@ def register(request):
         form = UserRegistrationForm()
 
     return render(request, 'accounts/register.html', {'form': form})  
+    
+    
+    

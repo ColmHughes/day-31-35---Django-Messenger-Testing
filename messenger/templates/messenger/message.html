@@ -1,0 +1,14 @@
+{% extends 'home/base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'messenger/style.css' %}">
+{% endblock styles %}
+
+{% block content %}
+
+<h1>message home page</h1>
+{{ message.subject }}
+
+{% endblock content %}
